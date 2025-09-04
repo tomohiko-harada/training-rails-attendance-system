@@ -46,6 +46,9 @@ gem "bootsnap", require: false
 gem "bootstrap", "~> 5.3"
 gem "sassc-rails"
 
+# erb整形
+gem 'htmlbeautifier'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
