@@ -101,3 +101,113 @@ Processing by TasksController#index as HTML
 Completed 200 OK in 72ms (Views: 63.3ms | ActiveRecord: 2.2ms | Allocations: 44527)
 
 
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE "myapp_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE "myapp_test" ENCODING = 'unicode'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7864839756650184315)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(7864839756650184315)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 172.19.0.1 at 2025-09-04 16:04:03 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/tasks/index.html.erb:6
+  Rendered tasks/_task.html.erb (Duration: 0.3ms | Allocations: 224)
+  Rendered tasks/index.html.erb within layouts/application (Duration: 8.7ms | Allocations: 7080)
+  Rendered layout layouts/application.html.erb (Duration: 1261.4ms | Allocations: 142691)
+Completed 200 OK in 1280ms (Views: 1264.2ms | ActiveRecord: 1.5ms | Allocations: 150214)
+
+
+Started GET "/tasks/1" for 172.19.0.1 at 2025-09-04 16:04:13 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:63:in `set_task'
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/show.html.erb within layouts/application
+  Rendered tasks/_task.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered tasks/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1087)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 6561)
+Completed 200 OK in 19ms (Views: 9.7ms | ActiveRecord: 0.8ms | Allocations: 9234)
+
+
+Started DELETE "/tasks/1" for 172.19.0.1 at 2025-09-04 16:04:17 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by TasksController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:63:in `set_task'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:52:in `destroy'
+  [1m[36mTask Destroy (1.0ms)[0m  [1m[31mDELETE FROM "tasks" WHERE "tasks"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/tasks_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:52:in `destroy'
+Redirected to http://localhost:3000/tasks
+Completed 302 Found in 8ms (ActiveRecord: 1.9ms | Allocations: 3072)
+
+
+Started GET "/tasks" for 172.19.0.1 at 2025-09-04 16:04:17 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by TasksController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/tasks/index.html.erb:6
+  Rendered tasks/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1089)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 6571)
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 0.2ms | Allocations: 6891)
+
+
+Started GET "/tasks/new" for 172.19.0.1 at 2025-09-04 16:04:20 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by TasksController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/new.html.erb within layouts/application
+  Rendered tasks/_form.html.erb (Duration: 10.0ms | Allocations: 2909)
+  Rendered tasks/new.html.erb within layouts/application (Duration: 12.3ms | Allocations: 3209)
+  Rendered layout layouts/application.html.erb (Duration: 24.1ms | Allocations: 8700)
+Completed 200 OK in 28ms (Views: 25.4ms | ActiveRecord: 0.0ms | Allocations: 9065)
+
+
+Started GET "/tasks" for 172.19.0.1 at 2025-09-04 16:04:22 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/tasks/index.html.erb:6
+  Rendered tasks/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1075)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | Allocations: 6564)
+Completed 200 OK in 16ms (Views: 12.4ms | ActiveRecord: 0.5ms | Allocations: 6836)
+
+
+Started GET "/tasks" for 172.19.0.1 at 2025-09-04 16:09:39 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/tasks/index.html.erb:6
+  Rendered tasks/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1315)
+  Rendered layout layouts/application.html.erb (Duration: 14.6ms | Allocations: 7072)
+Completed 200 OK in 21ms (Views: 16.7ms | ActiveRecord: 0.6ms | Allocations: 7920)
+
+
+Started GET "/tasks" for 172.19.0.1 at 2025-09-04 16:12:23 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/tasks/index.html.erb:6
+  Rendered tasks/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1077)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 6559)
+Completed 200 OK in 16ms (Views: 12.9ms | ActiveRecord: 0.4ms | Allocations: 6829)
+
+
