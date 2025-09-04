@@ -1,8 +1,24 @@
-# training-rails-attendance-system
-Rails研修課題のプロジェクトです。
+# README
 
-## 課題の概要
-https://jmty.kibe.la/@tomohiko.harada/38139
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-## 設計
-https://jmty.kibe.la/notes/38140
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
