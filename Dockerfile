@@ -1,4 +1,4 @@
-FROM ruby:3.1.2
+FROM ruby:3.2.8
 
 # OS packages
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
