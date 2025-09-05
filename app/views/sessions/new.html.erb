@@ -1,0 +1,23 @@
+
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="d-flex flex-column align-items-center">
+    <h1 class="mb-4">勤怠システム　ログイン</h1>
+
+    <%= form_with(scope: :session, url: login_path, local: true, class: "d-flex flex-column align-items-center") do |f| %>
+      <div class="mb-3">
+        <label>メールアドレス</label>
+        <%= f.email_field :mail, placeholder: "user@example.com", required: true, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <label>パスワード</label>
+        <%= f.password_field :password, required: true, class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit "ログインする", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <%= link_to "新規ユーザー登録", signup_path, class: "mt-3 btn btn-light" %>
+  </div>
+</div>

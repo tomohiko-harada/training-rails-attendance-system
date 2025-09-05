@@ -1,0 +1,10 @@
+
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="d-flex flex-column align-items-center">
+    <h1 class="mb-4">勤怠システム　ログイン中</h1>
+    <h2 class="mb-3">現在時刻：<%= l Time.current %></h1>
+
+    <%= link_to "ログアウト", logout_path, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: " 本当にログアウトしますか？"}  %>
+  </div>
+</div>

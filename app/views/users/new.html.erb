@@ -1,0 +1,22 @@
+
+<%= render partial: 'shared/error_message', locals: { model: @user } %>
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="d-flex flex-column align-items-center">
+    <h1 class="mb-4">勤怠システム　ユーザー登録</h1>
+
+    <%= form_with model: @user, url: users_path, local: true, class: "d-flex flex-column align-items-center" do |f| %>
+      <div class="mb-3">
+        <label class="form-label">メールアドレス</label>
+        <%= f.email_field :mail, placeholder: "user@example.com", required: true, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">パスワード</label>
+        <%= f.password_field :password, required: true, class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit "会員登録する", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
