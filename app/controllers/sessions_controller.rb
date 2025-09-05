@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       log_in(user)
       redirect_to user
     else
-      flash.now[:error] = "ログインに失敗しました"
+      flash.now[:danger] = "ログインに失敗しました"
       render "new", status: :unprocessable_entity
     end
   end

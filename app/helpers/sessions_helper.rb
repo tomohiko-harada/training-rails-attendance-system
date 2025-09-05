@@ -18,7 +18,7 @@ module SessionsHelper
   # ログインしていないユーザーがアクセスしてきた場合、ログイン画面にリダイレクトさせる
   def require_user
     if !logged_in?
-      flash[:alert] = "ログインしてください。"
+      flash[:danger] = "ログインしてください。"
       redirect_to login_path
     end
   end
