@@ -1,0 +1,2 @@
+module Attendances::FinishHelper
+end

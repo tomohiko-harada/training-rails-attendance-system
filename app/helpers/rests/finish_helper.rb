@@ -1,0 +1,2 @@
+module Rests::FinishHelper
+end
