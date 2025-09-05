@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :attendances, dependent: :destroy
+
   # 小文字に自動変換
   before_save { self.mail = mail.downcase }
 
