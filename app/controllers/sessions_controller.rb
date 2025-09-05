@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     user = User.find_by(mail: params[:session][:mail].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in(user)
-      redirect_to user
+      redirect_to user, success: "ログインしました！"
     else
       flash.now[:danger] = "ログインに失敗しました"
       render "new", status: :unprocessable_entity
@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to root_path, status: :see_other
+    redirect_to root_path, status: :see_other , success: "ログアウトしました"
   end
 end

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      redirect_to user_url(@user), notice: "新規ユーザー登録を行いました！"
+      redirect_to user_url(@user), success: "新規ユーザー登録を行いました！"
     else
       render :new, status: :unprocessable_entity
     end
