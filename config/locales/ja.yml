@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "Nameが空だった場合の日本語のエラーメッセージを入れる"
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        mail: "メールアドレス"
+        password: "パスワード"
