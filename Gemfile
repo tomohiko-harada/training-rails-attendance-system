@@ -55,6 +55,10 @@ gem 'rails-i18n'
 # 日本の祝日取得
 gem 'holiday_jp'
 
+# pry導入
+gem 'pry-rails'
+gem 'pry-byebug'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
