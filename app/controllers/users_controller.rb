@@ -9,7 +9,10 @@ class UsersController < ApplicationController
   # end
 
   def show
-    # 勤怠表示ページ
+    # 本日の勤怠レコードを取得
+    @attendance = current_user.attendances.find_by(date: Time.current.to_date)
+    # ステータス取得 (※ @attendanceが存在しない(1日のうち出勤ボタン押していない)場合は「退勤中」 )
+    @current_status = @attendance.present? ? @attendance.current_status : '退勤中'
   end
 
   def new
