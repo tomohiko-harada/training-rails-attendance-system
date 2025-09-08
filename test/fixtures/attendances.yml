@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  date: 2025-09-05
+  start_time: 2025-09-05 06:51:45
+  finish_time: 2025-09-05 06:51:45
+  start_rest_time: 2025-09-05 06:51:45
+  finish_rest_time: 2025-09-05 06:51:45
+
+two:
+  user: two
+  date: 2025-09-05
+  start_time: 2025-09-05 06:51:45
+  finish_time: 2025-09-05 06:51:45
+  start_rest_time: 2025-09-05 06:51:45
+  finish_rest_time: 2025-09-05 06:51:45

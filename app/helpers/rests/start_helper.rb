@@ -1,0 +1,2 @@
+module Rests::StartHelper
+end

@@ -1,0 +1,19 @@
+class Rests::StartController < ApplicationController
+  def create
+     # 既にstart_rest_timeが記録されているか確認
+    if prevent_double_punch(:start_rest_time, "本日の休憩開始時間はすでに記録されています。")
+      return 
+    end
+    
+    # 本日の勤怠レコードを取得
+    @attendance = current_user.attendances.find_by(date: Time.current.to_date)
+
+    # 休憩開始を記録できるかチェック
+    if @attendance && @attendance.current_status == '勤務中'
+      @attendance.update(start_rest_time: Time.now)
+      redirect_to user_path(current_user), notice: '休憩を開始しました。'
+    else
+      redirect_to user_path(current_user), alert: '現在、休憩を開始できません。'
+    end
+  end
+end
