@@ -95,6 +95,7 @@ GEM
     ffi (1.17.2-x86_64-linux-gnu)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    holiday_jp (0.8.1)
     htmlbeautifier (1.4.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
@@ -238,6 +239,7 @@ DEPENDENCIES
   bootstrap (~> 5.3)
   capybara
   debug
+  holiday_jp
   htmlbeautifier
   importmap-rails
   jbuilder
