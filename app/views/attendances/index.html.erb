@@ -15,7 +15,12 @@
       <span class="me-2">月</span>
       <%= submit_tag "決定", class: "btn btn-primary" %>
     <% end %>
+    <div class="ms-auto me-3">
+      <%= link_to "打刻画面に戻る", user_path(current_user), class: "btn btn-outline-danger"%>
+    </div>
   </div>
+
+
 
   <table class="table table-bordered">
     <thead class="thead-dark table-dark">
@@ -58,10 +63,10 @@
           <td><%= I18n.t("date.abbr_day_names")[attendance.date.wday] %></td>
           <td><%= attendance.start_time&.strftime(t('time.formats.punch_time')) %></td>
           <td><%= attendance.finish_time&.strftime(t('time.formats.punch_time')) %></td>
-          <td><%= number_to_hours(binding_time_minutes) %></td>
+          <td><%= number_to_hours(binding_time_minutes) if attendance.persisted? %></td>
           <td><%= attendance.start_rest_time&.strftime(t('time.formats.punch_time')) %></td>
           <td><%= attendance.finish_rest_time&.strftime(t('time.formats.punch_time')) %></td>
-          <td><%= number_to_hours(rest_time_minutes) %></td>
+          <td><%= number_to_hours(rest_time_minutes) if attendance.persisted? %></td>
         </tr>
       <% end %>
     </tbody>
