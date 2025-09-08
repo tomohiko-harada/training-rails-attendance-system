@@ -26,23 +26,23 @@ class Attendance < ApplicationRecord
   # イベントの順序と論理的な矛盾をチェックするメソッド
   def validate_event_order
     # 退勤時間が存在する場合、出勤時間は必須
-    if finish_time.present?
-      errors.add(:finish_time, 'は出勤時間より後に設定してください。') unless start_time.present? && finish_time > start_time
+    if finish_time.present? && (start_time.nil? || finish_time <= start_time)
+      errors.add(:finish_time, 'は出勤時間より後に設定してください。')
     end
 
     # 休憩開始時間が存在する場合、出勤時間は必須
-    if start_rest_time.present?
-      errors.add(:start_rest_time, 'は出勤時間より後に設定してください。') unless start_time.present? && start_rest_time > start_time
+    if start_rest_time.present? && (start_time.nil? || start_rest_time <= start_time)
+      errors.add(:start_rest_time, 'は出勤時間より後に設定してください。')
     end
 
     # 休憩終了時間が存在する場合、休憩開始時間は必須
-    if finish_rest_time.present?
-      errors.add(:finish_rest_time, 'は休憩開始時間より後に設定してください。') unless start_rest_time.present? && finish_rest_time > start_rest_time
+    if finish_rest_time.present? && (start_rest_time.nil? || finish_rest_time <= start_rest_time)
+      errors.add(:finish_rest_time, 'は休憩開始時間より後に設定してください。')
     end
 
     # 休憩時間が勤務時間内にあることを確認
-    if start_rest_time.present? && finish_rest_time.present?
-      unless start_time.present? && finish_time.present? && start_rest_time >= start_time && finish_rest_time <= finish_time
+    if start_rest_time.present? && finish_rest_time.present? && finish_time.present?
+      if start_time.nil? || start_rest_time < start_time || finish_rest_time > finish_time
         errors.add(:base, '休憩時間は勤務時間内に収める必要があります。')
       end
     end
