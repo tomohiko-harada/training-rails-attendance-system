@@ -12,6 +12,7 @@
       <%= link_to "退勤", attendances_finish_path(user_id: current_user.id), class: "btn btn-danger", data: { turbo_method: :post}  %>
     </div>
 
+    <%= link_to "勤怠履歴", user_attendances_path(current_user), class: "btn btn-success mb-4"%>
     <%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: " 本当にログアウトしますか？"}  %>
   </div>
 </div>
