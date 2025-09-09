@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  # before_action :set_user, only: [:show, :edit, :update, :destroy ]
-  before_action :set_user, only: [:show]
   before_action :require_user, only: [:show]
   before_action :require_same_user, only: [:show]
 
@@ -47,17 +45,6 @@ class UsersController < ApplicationController
   # end
 
   private
-
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def require_same_user
-    return unless current_user != @user
-
-    flash[:alert] = 'こちらのページにはアクセスできません。'
-    redirect_back_or_to(root_url, status: :see_other)
-  end
 
   def user_params
     params.require(:user).permit(:mail, :password, :password_confirmation)

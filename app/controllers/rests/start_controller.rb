@@ -1,4 +1,7 @@
 class Rests::StartController < ApplicationController
+  before_action :require_user
+  before_action :require_same_user
+  
   def create
     # 既にstart_rest_timeが記録されているか確認
     return if prevent_double_punch(:start_rest_time, '本日の休憩開始時間はすでに記録されています。')

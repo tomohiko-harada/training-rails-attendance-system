@@ -1,4 +1,7 @@
 class Attendances::FinishController < ApplicationController
+  before_action :require_user
+  before_action :require_same_user
+
   def create
     # 既にfinish_timeが記録されているか確認
     return if prevent_double_punch(:finish_time, '本日の退勤はすでに記録されています。')

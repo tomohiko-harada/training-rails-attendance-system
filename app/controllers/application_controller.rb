@@ -4,6 +4,18 @@ class ApplicationController < ActionController::Base
   # sessipn管理用のメソッド
   include SessionsHelper
 
+  # あるユーザーが別ユーザーのページにアクセスした場合はブロックする
+  def require_same_user
+    # パラメータからユーザーIDを取得。idがあればidを、なければuser_idを使用する
+    user_param_id = params[:id] || params[:user_id]
+    @user = User.find(user_param_id)
+
+    if current_user != @user
+      flash[:danger] = 'こちらのページにはアクセスできません。'
+      redirect_back_or_to(root_url, status: :see_other)
+    end
+  end
+
   private
 
   # 同じ打刻ボタンを1日に2度押されていたらtrueを返すメソッド

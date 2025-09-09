@@ -1,4 +1,7 @@
 class Rests::FinishController < ApplicationController
+  before_action :require_user
+  before_action :require_same_user
+  
   def create
     # 既にfinish_rest_timeが記録されているか確認
     return if prevent_double_punch(:finish_rest_time, '本日の休憩終了時間はすでに記録されています。')
