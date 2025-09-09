@@ -1,13 +1,12 @@
-
 # 1. Userの作成
-puts "ユーザーを作成中..."
+puts 'ユーザーを作成中...'
 user = User.find_or_create_by!(mail: 'test@jmty.jp') do |u|
   u.password = 'password'
 end
 puts "ユーザー: #{user.mail} が作成されました。"
 
 # 2. 本日より40日前〜1日前の平日のAttendanceデータを作成
-puts "勤怠データを生成中..."
+puts '勤怠データを生成中...'
 
 # 40日前から昨日までの日付範囲
 (40.days.ago.to_date..Date.yesterday).each do |date|
@@ -17,7 +16,7 @@ puts "勤怠データを生成中..."
   # 出勤時間と退勤時間のランダムな値を設定
   start_time = Time.zone.local(date.year, date.month, date.day, 9, rand(0..30))
   finish_time = Time.zone.local(date.year, date.month, date.day, 18, rand(30..59))
-  
+
   # 休憩時間を作成するかを1/2の確率で決定
   has_rest = [true, false].sample
 
@@ -37,9 +36,9 @@ puts "勤怠データを生成中..."
   attendance.finish_time = finish_time
   attendance.start_rest_time = start_rest_time
   attendance.finish_rest_time = finish_rest_time
-  
+
   # 保存
   attendance.save!
 end
 
-puts "勤怠データの生成が完了しました。"
+puts '勤怠データの生成が完了しました。'

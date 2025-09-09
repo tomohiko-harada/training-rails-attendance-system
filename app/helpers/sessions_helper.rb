@@ -1,5 +1,4 @@
 module SessionsHelper
-  
   # ログイン時にセッションIDを付与する
   def log_in(user)
     session[:user_id] = user.id
@@ -13,14 +12,6 @@ module SessionsHelper
   # ユーザーがログインしているかどうかをチェックする
   def logged_in?
     !current_user.nil?
-  end
-
-  # ログインしていないユーザーがアクセスしてきた場合、ログイン画面にリダイレクトさせる
-  def require_user
-    if !logged_in?
-      flash[:danger] = "ログインしてください。"
-      redirect_to login_path
-    end
   end
 
   # ログアウトする（セッション情報を削除する）

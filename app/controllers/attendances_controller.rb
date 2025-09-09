@@ -1,9 +1,12 @@
 class AttendancesController < ApplicationController
+  before_action :require_user
+  before_action :require_same_user
+
   def index
     # パラメーターから年と月を取得し、ない場合は現在の日付を使用
     year = params[:year].present? ? params[:year].to_i : Time.current.year
     month = params[:month].present? ? params[:month].to_i : Time.current.month
-    
+
     # 選択した月の最初の日付と最後の日付を設定
     @first_day = Date.new(year, month, 1)
     @last_day = @first_day.end_of_month
@@ -23,21 +26,18 @@ class AttendancesController < ApplicationController
 
   def create
     # 既にstart_timeが記録されているか確認
-    if prevent_double_punch(:start_time, "本日の出勤はすでに記録されています。")
-      return 
-    end
-    
+    return if prevent_double_punch(:start_time, '本日の出勤はすでに記録されています。')
+
     @attendance = current_user.attendances.find_or_initialize_by(date: Time.current.to_date)
     # 新規作成したレコードにstart_timeをセット
     @attendance.start_time = Time.current
 
     if @attendance.save
-      flash[:success] = "出勤時間を記録しました。"
+      flash[:success] = '出勤時間を記録しました。'
       redirect_to user_path(current_user)
     else
-      flash[:danger] = "出勤時間の記録に失敗しました。"
+      flash[:danger] = '出勤時間の記録に失敗しました。'
       redirect_to user_path(current_user)
     end
-
   end
 end

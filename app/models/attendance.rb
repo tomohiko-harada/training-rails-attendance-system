@@ -2,7 +2,7 @@ class Attendance < ApplicationRecord
   belongs_to :user
 
   # 日付とユーザーの組み合わせはユニークであること
-  validates :date, uniqueness: { scope: :user_id, message: "は1日に1回しか登録できません。" }
+  validates :date, uniqueness: { scope: :user_id, message: 'は1日に1回しか登録できません。' }
 
   # イベントの順序を検証するカスタムバリデーション
   validate :validate_event_order
@@ -41,11 +41,9 @@ class Attendance < ApplicationRecord
     end
 
     # 休憩時間が勤務時間内にあることを確認
-    if start_rest_time.present? && finish_rest_time.present? && finish_time.present?
-      if start_time.nil? || start_rest_time < start_time || finish_rest_time > finish_time
-        errors.add(:base, '休憩時間は勤務時間内に収める必要があります。')
-      end
-    end
-  end
+    return unless start_rest_time.present? && finish_rest_time.present? && finish_time.present?
+    return unless start_time.nil? || start_rest_time < start_time || finish_rest_time > finish_time
 
+    errors.add(:base, '休憩時間は勤務時間内に収める必要があります。')
+  end
 end
