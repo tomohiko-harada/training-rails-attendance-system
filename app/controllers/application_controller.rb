@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
     user_param_id = params[:id] || params[:user_id]
     @user = User.find(user_param_id)
 
-    if current_user != @user
-      flash[:danger] = 'こちらのページにはアクセスできません。'
-      redirect_back_or_to(root_url, status: :see_other)
-    end
+    return unless current_user != @user
+
+    flash[:danger] = 'こちらのページにはアクセスできません。'
+    redirect_back_or_to(root_url, status: :see_other)
   end
 
   private

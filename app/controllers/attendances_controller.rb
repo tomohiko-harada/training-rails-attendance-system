@@ -1,7 +1,7 @@
 class AttendancesController < ApplicationController
   before_action :require_user
   before_action :require_same_user
-  
+
   def index
     # パラメーターから年と月を取得し、ない場合は現在の日付を使用
     year = params[:year].present? ? params[:year].to_i : Time.current.year
