@@ -14,14 +14,6 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  # ログインしていないユーザーがアクセスしてきた場合、ログイン画面にリダイレクトさせる
-  def require_user
-    return if logged_in?
-
-    flash[:danger] = 'ログインしてください。'
-    redirect_to login_path
-  end
-
   # ログアウトする（セッション情報を削除する）
   def log_out
     session.delete(:user_id)

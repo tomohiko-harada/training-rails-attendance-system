@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   # sessipn管理用のメソッド
   include SessionsHelper
 
+  # ログインしていないユーザーがアクセスしてきた場合、ログイン画面にリダイレクトさせる
+  def require_user
+    return if logged_in?
+
+    flash[:danger] = 'ログインしてください。'
+    redirect_to login_path
+  end
+
   # あるユーザーが別ユーザーのページにアクセスした場合はブロックする
   def require_same_user
     # パラメータからユーザーIDを取得。idがあればidを、なければuser_idを使用する
