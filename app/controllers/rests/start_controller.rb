@@ -13,7 +13,7 @@ class Rests::StartController < ApplicationController
       @attendance.update(start_rest_time: Time.now)
       redirect_to user_path(current_user), notice: '休憩を開始しました。'
     else
-      redirect_to user_path(current_user), alert: '現在、休憩を開始できません。'
+      redirect_to user_path(current_user), danger: '現在、休憩を開始できません。'
     end
   end
 end
