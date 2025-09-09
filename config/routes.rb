@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'sessions/new'
-  resources :tasks
   root to: 'sessions#new'
 
   get 'signup', to: 'users#new'
