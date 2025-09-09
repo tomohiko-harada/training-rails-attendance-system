@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      redirect_to user_url(@user), success: "新規ユーザー登録を行いました！"
+      redirect_to user_url(@user), success: '新規ユーザー登録を行いました！'
     else
       render :new, status: :unprocessable_entity
     end
@@ -47,18 +47,19 @@ class UsersController < ApplicationController
   # end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    def require_same_user
-      if current_user != @user
-      flash[:alert] = "こちらのページにはアクセスできません。"
-      redirect_back_or_to(root_url, status: :see_other)
-    end
-end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:mail, :password, :password_confirmation)
-    end
+  def require_same_user
+    return unless current_user != @user
+
+    flash[:alert] = 'こちらのページにはアクセスできません。'
+    redirect_back_or_to(root_url, status: :see_other)
+  end
+
+  def user_params
+    params.require(:user).permit(:mail, :password, :password_confirmation)
+  end
 end

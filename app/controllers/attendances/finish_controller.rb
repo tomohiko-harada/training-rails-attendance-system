@@ -1,9 +1,7 @@
 class Attendances::FinishController < ApplicationController
   def create
     # 既にfinish_timeが記録されているか確認
-    if prevent_double_punch(:finish_time, "本日の退勤はすでに記録されています。")
-      return 
-    end
+    return if prevent_double_punch(:finish_time, '本日の退勤はすでに記録されています。')
 
     # 本日の勤怠レコードを取得
     @attendance = current_user.attendances.find_by(date: Time.current.to_date)

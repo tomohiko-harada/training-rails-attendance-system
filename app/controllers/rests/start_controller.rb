@@ -1,10 +1,8 @@
 class Rests::StartController < ApplicationController
   def create
-     # 既にstart_rest_timeが記録されているか確認
-    if prevent_double_punch(:start_rest_time, "本日の休憩開始時間はすでに記録されています。")
-      return 
-    end
-    
+    # 既にstart_rest_timeが記録されているか確認
+    return if prevent_double_punch(:start_rest_time, '本日の休憩開始時間はすでに記録されています。')
+
     # 本日の勤怠レコードを取得
     @attendance = current_user.attendances.find_by(date: Time.current.to_date)
 

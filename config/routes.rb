@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   get 'sessions/new'
   resources :tasks
-  root to: "sessions#new"
+  root to: 'sessions#new'
 
-  get "signup", to: "users#new"
+  get 'signup', to: 'users#new'
 
-  resources :users, only: [:show, :create] do
-    resources :attendances, only: [:index, :create]
+  resources :users, only: %i[show create] do
+    resources :attendances, only: %i[index create]
   end
 
   # 退勤ボタン
@@ -21,8 +21,7 @@ Rails.application.routes.draw do
   end
 
   # Session用のルートティングを設定
-  get "login", to: "sessions#new"
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
-
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end

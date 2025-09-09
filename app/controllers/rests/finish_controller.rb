@@ -1,9 +1,7 @@
 class Rests::FinishController < ApplicationController
   def create
     # 既にfinish_rest_timeが記録されているか確認
-    if prevent_double_punch(:finish_rest_time, "本日の休憩終了時間はすでに記録されています。")
-      return 
-    end
+    return if prevent_double_punch(:finish_rest_time, '本日の休憩終了時間はすでに記録されています。')
 
     # 本日の勤怠レコードを取得
     @attendance = current_user.attendances.find_by(date: Time.current.to_date)
