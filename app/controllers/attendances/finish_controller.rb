@@ -12,7 +12,7 @@ class Attendances::FinishController < ApplicationController
     # 休憩開始を記録できるかチェック
     if @attendance && @attendance.current_status == '勤務中'
       @attendance.update(finish_time: Time.now)
-      redirect_to user_path(current_user), notice: '退勤しました。お疲れ様でした！'
+      redirect_to user_path(current_user), success: '退勤しました。お疲れ様でした！'
     else
       redirect_to user_path(current_user), alert: '現在、勤務終了できません。'
     end

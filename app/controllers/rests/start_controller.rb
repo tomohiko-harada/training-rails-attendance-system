@@ -12,7 +12,7 @@ class Rests::StartController < ApplicationController
     # 休憩開始を記録できるかチェック
     if @attendance && @attendance.current_status == '勤務中'
       @attendance.update(start_rest_time: Time.now)
-      redirect_to user_path(current_user), notice: '休憩を開始しました。'
+      redirect_to user_path(current_user), success: '休憩を開始しました。'
     else
       redirect_to user_path(current_user), danger: '現在、休憩を開始できません。'
     end
