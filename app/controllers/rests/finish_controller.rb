@@ -1,6 +1,5 @@
 class Rests::FinishController < ApplicationController
   def create
-    binding.pry
     # 既にfinish_rest_timeが記録されているか確認
     if prevent_double_punch(:finish_rest_time, "本日の休憩終了時間はすでに記録されています。")
       return 
