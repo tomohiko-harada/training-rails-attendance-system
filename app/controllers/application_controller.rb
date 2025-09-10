@@ -14,12 +14,13 @@ class ApplicationController < ActionController::Base
 
   # あるユーザーが別ユーザーのページにアクセスした場合はブロックする
   def require_same_user
-    accessed_user = User.find(params[:user_id])
-
-    return unless current_user != accessed_user
-
-    flash[:danger] = 'こちらのページにはアクセスできません。'
-    redirect_back_or_to(root_url, status: :see_other)
+    accessed_user = User.find_by(id: params[:user_id])
+    
+    # ユーザーが見つからない、または現在のユーザーと一致しない場合にアクセスをブロック
+    if accessed_user.nil? || current_user != accessed_user
+      flash[:danger] = 'こちらのページにはアクセスできません。'
+      redirect_to root_url, status: :see_other
+    end
   end
 
   private
