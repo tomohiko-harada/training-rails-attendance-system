@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_09_10_090301) do
+ActiveRecord::Schema[7.0].define(version: 2025_09_10_094119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_09_10_090301) do
     t.datetime "finish_rest_time_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "date_on"], name: "index_attendances_on_user_and_date", comment: "個人の勤続年数に関係なく一定の高速性を保証"
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
@@ -31,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_09_10_090301) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["mail"], name: "index_users_on_mail", unique: true, comment: "ログイン時のユーザー検索高速化"
   end
 
   add_foreign_key "attendances", "users"
