@@ -35,9 +35,9 @@ class ApplicationController < ActionController::Base
       raise ArgumentError, "Invalid field name: #{field_name}"
     end
 
-    @attendance = current_user.attendances.find_by(date: Time.current.to_date)
+    attendance = current_user.attendances.find_by(date: Time.current.to_date)
 
-    if @attendance && @attendance.public_send(field_name).present?
+    if attendance && attendance.public_send(field_name).present?
       flash[:danger] = flash_message
       redirect_to user_path(current_user)
       return true # 処理を終了させることを呼び出し元に伝える
