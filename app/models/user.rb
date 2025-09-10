@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # メールの文字数上限
-  
+
   has_many :attendances, dependent: :destroy
 
   # 小文字に自動変換
