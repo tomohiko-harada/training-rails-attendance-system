@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   # 同じ打刻ボタンを1日に2度押されていたらtrueを返すメソッド
   def prevent_double_punch(field_name, flash_message)
     # 許可リストを定義
-    allowed_fields = [:start_time, :finish_time, :start_rest_time, :finish_rest_time]
+    allowed_fields = [:start_time_at, :finish_time_at, :start_rest_time_at, :finish_rest_time_at]
 
     # パラメーターが許可リストに含まれているかチェック
     unless allowed_fields.include?(field_name)
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       raise ArgumentError, "Invalid field name: #{field_name}"
     end
 
-    attendance = current_user.attendances.find_by(date: Time.current.to_date)
+    attendance = current_user.attendances.find_by(date_on: Time.current.to_date)
 
     if attendance && attendance.public_send(field_name).present?
       flash[:danger] = flash_message
