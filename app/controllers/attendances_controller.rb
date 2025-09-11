@@ -26,11 +26,11 @@ class AttendancesController < ApplicationController
 
   def create
     # 既にstart_timeが記録されているか確認
-    return if prevent_double_punch(:start_time_at, '本日の出勤はすでに記録されています。')
+    return if prevent_double_punch(:started_at, '本日の出勤はすでに記録されています。')
 
     @attendance = current_user.attendances.find_or_initialize_by(date_on: Time.current.to_date)
     # 新規作成したレコードにstart_timeをセット
-    @attendance.start_time_at = Time.current
+    @attendance.started_at = Time.current
 
     if @attendance.save
       flash[:success] = '出勤時間を記録しました。'

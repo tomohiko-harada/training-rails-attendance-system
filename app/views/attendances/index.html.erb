@@ -46,13 +46,13 @@
         <% rest_time_minutes = 0 %>
         
         <% if attendance.persisted? %>
-          <% if attendance.start_time_at && attendance.finish_time_at %>
-            <% binding_time_minutes = (attendance.finish_time_at - attendance.start_time_at) / 60 %>
+          <% if attendance.started_at && attendance.finished_at %>
+            <% binding_time_minutes = (attendance.finished_at - attendance.started_at) / 60 %>
           <% end %>
 
-          <% if attendance.start_rest_time_at && attendance.finish_rest_time_at %>
-            <% rest_time_minutes = (attendance.finish_rest_time_at - attendance.start_rest_time_at) / 60 %>
-          <% elsif attendance.start_rest_time_at.nil? && attendance.finish_time_at.present? %>
+          <% if attendance.started_rest_at && attendance.finished_rest_at %>
+            <% rest_time_minutes = (attendance.finished_rest_at - attendance.started_rest_at) / 60 %>
+          <% elsif attendance.started_rest_at.nil? && attendance.finished_at.present? %>
             <% rest_time_minutes = 60 # 休憩開始がない場合は1時間とみなす %>
           <% end %>
           
@@ -63,11 +63,11 @@
         <tr>
           <td><%= l attendance.date_on, format: :short %></td>
           <td><%= I18n.t("date.abbr_day_names")[attendance.date_on.wday] %></td>
-          <td><%= attendance.start_time_at&.strftime(t('time.formats.punch_time')) %></td>
-          <td><%= attendance.finish_time_at&.strftime(t('time.formats.punch_time')) %></td>
+          <td><%= attendance.started_at&.strftime(t('time.formats.punch_time')) %></td>
+          <td><%= attendance.finished_at&.strftime(t('time.formats.punch_time')) %></td>
           <td><%= number_to_hours(binding_time_minutes) if attendance.persisted? %></td>
-          <td><%= attendance.start_rest_time_at&.strftime(t('time.formats.punch_time')) %></td>
-          <td><%= attendance.finish_rest_time_at&.strftime(t('time.formats.punch_time')) %></td>
+          <td><%= attendance.started_rest_at&.strftime(t('time.formats.punch_time')) %></td>
+          <td><%= attendance.finished_rest_at&.strftime(t('time.formats.punch_time')) %></td>
           <td><%= number_to_hours(rest_time_minutes) if attendance.persisted? %></td>
         </tr>
       <% end %>

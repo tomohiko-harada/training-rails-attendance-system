@@ -15,12 +15,12 @@ class ApplicationController < ActionController::Base
   # あるユーザーが別ユーザーのページにアクセスした場合はブロックする
   def require_same_user
     accessed_user = User.find_by(id: params[:user_id])
-
+    
     # ユーザーが見つからない、または現在のユーザーと一致しない場合にアクセスをブロック
-    return unless accessed_user.nil? || current_user != accessed_user
-
-    flash[:danger] = 'こちらのページにはアクセスできません。'
-    redirect_to root_url, status: :see_other
+    if accessed_user.nil? || current_user != accessed_user
+      flash[:danger] = 'こちらのページにはアクセスできません。'
+      redirect_to root_url, status: :see_other
+    end
   end
 
   private
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   # 同じ打刻ボタンを1日に2度押されていたらtrueを返すメソッド
   def prevent_double_punch(field_name, flash_message)
     # 許可リストを定義
-    allowed_fields = %i[start_time_at finish_time_at start_rest_time_at finish_rest_time_at]
+    allowed_fields = [:started_at, :finished_at, :started_rest_at, :finished_rest_at]
 
     # パラメーターが許可リストに含まれているかチェック
     unless allowed_fields.include?(field_name)

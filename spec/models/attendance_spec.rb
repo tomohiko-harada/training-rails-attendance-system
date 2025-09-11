@@ -9,7 +9,7 @@ RSpec.describe Attendance, type: :model do
     end
 
     context '出勤時間と退勤時間のみを記録したデータを使用する時' do
-      let(:attendance) { FactoryBot.build(:attendance, start_rest_time_at: nil, finish_rest_time_at: nil) }
+      let(:attendance) { FactoryBot.build(:attendance, started_rest_at: nil, finished_rest_at: nil) }
 
       it '有効な勤怠記録であること' do
         expect(attendance).to be_valid
@@ -17,34 +17,34 @@ RSpec.describe Attendance, type: :model do
     end
 
     context '退勤時間が出勤時間より前の場合' do
-      let(:attendance) { FactoryBot.build(:attendance, start_time_at: Time.zone.local(2025, 9, 1, 18, 0), finish_time_at: Time.zone.local(2025, 9, 1, 9, 0)) }
+      let(:attendance) { FactoryBot.build(:attendance, started_at: Time.zone.local(2025, 9, 1, 18, 0), finished_at: Time.zone.local(2025, 9, 1, 9, 0)) }
 
       it '退勤時間について無効な勤怠記録であること' do
         attendance.valid?
-        expect(attendance.errors[:finish_time_at]).to include('は出勤時間より後に設定してください。')
+        expect(attendance.errors[:finished_at]).to include('は出勤時間より後に設定してください。')
       end
     end
 
     context '休憩終了時間が休憩開始時間より前の場合' do
-      let(:attendance) { FactoryBot.build(:attendance, start_rest_time_at: Time.zone.local(2025, 9, 1, 13, 0), finish_rest_time_at: Time.zone.local(2025, 9, 1, 12, 0)) }
+      let(:attendance) { FactoryBot.build(:attendance, started_rest_at: Time.zone.local(2025, 9, 1, 13, 0), finished_rest_at: Time.zone.local(2025, 9, 1, 12, 0)) }
 
       it '休憩終了時間について無効な勤怠記録であること' do
         attendance.valid?
-        expect(attendance.errors[:finish_rest_time_at]).to include('は休憩開始時間より後に設定してください。')
+        expect(attendance.errors[:finished_rest_at]).to include('は休憩開始時間より後に設定してください。')
       end
     end
 
     context '休憩開始時間が出勤時間より前の場合' do
-      let(:attendance) { FactoryBot.build(:attendance, start_time_at: Time.zone.local(2025, 9, 1, 9, 0), start_rest_time_at: Time.zone.local(2025, 9, 1, 8, 0)) }
+      let(:attendance) { FactoryBot.build(:attendance, started_at: Time.zone.local(2025, 9, 1, 9, 0), started_rest_at: Time.zone.local(2025, 9, 1, 8, 0)) }
 
       it '休憩開始時間について無効な勤怠記録であること' do
         attendance.valid?
-        expect(attendance.errors[:start_rest_time_at]).to include('は出勤時間より後に設定してください。')
+        expect(attendance.errors[:started_rest_at]).to include('は出勤時間より後に設定してください。')
       end
     end
 
     context '休憩終了時間が退勤時間より後の場合' do
-      let(:attendance) { FactoryBot.build(:attendance, finish_time_at: Time.zone.local(2025, 9, 1, 18, 0), finish_rest_time_at: Time.zone.local(2025, 9, 1, 19, 0)) }
+      let(:attendance) { FactoryBot.build(:attendance, finished_at: Time.zone.local(2025, 9, 1, 18, 0), finished_rest_at: Time.zone.local(2025, 9, 1, 19, 0)) }
 
       it '休憩終了時間について無効な勤怠記録であること' do
         attendance.valid?

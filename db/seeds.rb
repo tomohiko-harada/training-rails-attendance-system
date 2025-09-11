@@ -32,10 +32,10 @@ puts '勤怠データを生成中...'
 
   # Attendanceレコードを作成
   attendance = user.attendances.find_or_initialize_by(date_on: date)
-  attendance.start_time_at = start_time
-  attendance.finish_time_at = finish_time
-  attendance.start_rest_time_at = start_rest_time
-  attendance.finish_rest_time_at = finish_rest_time
+  attendance.started_at = start_time
+  attendance.finished_at = finish_time
+  attendance.started_rest_at = start_rest_time
+  attendance.finished_rest_at = finish_rest_time
 
   # 保存
   attendance.save!

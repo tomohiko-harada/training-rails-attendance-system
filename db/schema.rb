@@ -10,30 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_250_910_094_119) do
+ActiveRecord::Schema[7.0].define(version: 2025_09_11_030629) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'attendances', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.date 'date_on'
-    t.datetime 'start_time_at'
-    t.datetime 'finish_time_at'
-    t.datetime 'start_rest_time_at'
-    t.datetime 'finish_rest_time_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index %w[user_id date_on], name: 'index_attendances_on_user_and_date', comment: '個人の勤続年数に関係なく一定の高速性を保証'
-    t.index ['user_id'], name: 'index_attendances_on_user_id'
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date_on"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "started_rest_at"
+    t.datetime "finished_rest_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "date_on"], name: "index_attendances_on_user_and_date", comment: "個人の勤続年数に関係なく一定の高速性を保証"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'mail'
-    t.string 'password_digest'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['mail'], name: 'index_users_on_mail', unique: true, comment: 'ログイン時のユーザー検索高速化'
+  create_table "users", force: :cascade do |t|
+    t.string "mail"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mail"], name: "index_users_on_mail", unique: true, comment: "ログイン時のユーザー検索高速化"
   end
 
-  add_foreign_key 'attendances', 'users'
+  add_foreign_key "attendances", "users"
 end
