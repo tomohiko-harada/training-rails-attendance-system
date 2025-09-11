@@ -5,8 +5,9 @@
 <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
   <div class="d-flex flex-column align-items-center">
     <h1 class="mb-4">勤怠システム　ログイン中</h1>
-    <h2 class="mb-3">現在時刻：<%= l Time.current %></h2>
-    <h2 class="mb-3">現在の状態：<%= @current_status %></h1>
+    <h2 class="mb-5">本日は<%= l Time.current, format: :short_jp%>です。</h2>
+    <h2 class="mb-5">現在時刻：<%= l Time.current, format: :short_time%></h2>
+    <h3 class="mb-2">現在の状態：<%= @current_status %></h1>
     <div class="d-flex justify-content-evenly m-4 w-100">
       <%= link_to "出勤", user_attendances_path(user_id: current_user.id), class: "btn btn-primary", data: { turbo_method: :post}  %>
       <%= link_to "休憩開始", user_rests_start_path(user_id: current_user.id), class: "btn btn-light", data: { turbo_method: :post}  %>
