@@ -41,7 +41,7 @@ RSpec.describe User, type: :model do
 
     it '無効であること' do
       user_two.valid?
-      expect(user2.errors[:mail]).to include('はすでに存在します')
+      expect(user_two.errors[:mail]).to include('はすでに存在します')
     end
   end
 
