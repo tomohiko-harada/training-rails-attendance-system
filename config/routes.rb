@@ -10,17 +10,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     resources :attendances, only: %i[index create]
-  end
+    # 退勤
+    post 'attendances/finish', to: 'attendances/finish#create', as: :attendances_finish
 
-  # 退勤ボタン
-  namespace :attendances do
-    post :finish, to: 'finish#create'
-  end
-
-  # 休憩開始/終了ボタン
-  namespace :rests do
-    post :start, to: 'start#create'
-    post :finish, to: 'finish#create'
+    # 休憩開始/終了
+    post 'rests/start',  to: 'rests/start#create',  as: :rests_start
+    post 'rests/finish', to: 'rests/finish#create', as: :rests_finish
   end
 
   # Session用のルートティングを設定
