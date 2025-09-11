@@ -110,3 +110,9 @@ Style/SpecialGlobalVars:
 # URISchemes: http, https
 Layout/LineLength:
   Max: 198
+
+RSpec/ContextWording:
+  Enabled: false
+
+Style/StringConcatenation:
+  Mode: conservative

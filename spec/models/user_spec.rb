@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
   end
 
   context 'メールアドレスが106文字以上の場合' do
-    let(:user) { FactoryBot.build(:user, mail: ('a'*101) + ('@a.jp')) }
+    let(:user) { FactoryBot.build(:user, mail: ('a' * 101) + '@a.jp') }
 
     it '無効であること' do
       user.valid?
@@ -36,12 +36,12 @@ RSpec.describe User, type: :model do
   end
 
   context '重複したメールアドレスを使用した場合' do
-    let(:user1) { FactoryBot.create(:user) }
-    let(:user2) { FactoryBot.build(:user, mail: user1.mail) }
+    let(:user_one) { FactoryBot.create(:user) }
+    let(:user_two) { FactoryBot.build(:user, mail: user_one.mail) }
 
     it '無効であること' do
-      user2.valid?
-      expect(user2.errors[:mail]).to include('はすでに存在します')
+      user_two.valid?
+      expect(user_two.errors[:mail]).to include('はすでに存在します')
     end
   end
 
@@ -62,5 +62,4 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password]).to include('は6文字以上で入力してください')
     end
   end
-
 end

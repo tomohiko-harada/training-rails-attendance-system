@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'users#new'
 
-  resources :users, only: %i[show create] do
+  # users#showのparamsをuser_idに設定
+  get 'users/:user_id', to: 'users#show', as: 'user'
+  post 'users', to: 'users#create', as: 'users'
+
+  resources :users, only: [] do
     resources :attendances, only: %i[index create]
   end
 
