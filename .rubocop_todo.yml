@@ -49,8 +49,6 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
-
-
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MaxUnannotatedPlaceholdersAllowed, AllowedMethods, AllowedPatterns.
@@ -112,7 +110,6 @@ Style/SpecialGlobalVars:
 # URISchemes: http, https
 Layout/LineLength:
   Max: 198
-
 
 RSpec/ContextWording:
   Enabled: false
