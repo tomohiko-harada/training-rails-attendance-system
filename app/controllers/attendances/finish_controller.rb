@@ -10,7 +10,7 @@ class Attendances::FinishController < ApplicationController
     @attendance = current_user.attendances.find_by(date_on: Time.current.to_date)
 
     # 休憩開始を記録できるかチェック
-    if @attendance && @attendance.current_status == '勤務中'
+    if @attendance && @attendance.on_duty?
       @attendance.update(finished_at: Time.now)
       redirect_to user_path(current_user), success: '退勤しました。お疲れ様でした！'
     else

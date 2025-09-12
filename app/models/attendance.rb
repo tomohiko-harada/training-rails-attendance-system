@@ -7,18 +7,19 @@ class Attendance < ApplicationRecord
   # イベントの順序を検証するカスタムバリデーション
   validate :validate_event_order
 
-  # 現在のステータスを判定するメソッド
-  def current_status
-    if started_at.nil? || (started_at.present? && finished_at.present?)
-      '退勤'
-    elsif started_rest_at.present? && finished_rest_at.nil?
-      '休憩中'
-    elsif started_at.present? && finished_at.nil?
-      '勤務中'
-    else
-      # その他の想定外の状態
-      '不明'
-    end
+  # 勤務状態を判定するメソッド
+  def on_duty?
+    started_at.present? && finished_at.nil?
+  end
+
+  # 休憩状態を判定するメソッド
+  def on_break?
+    started_rest_at.present? && finished_rest_at.nil?
+  end
+
+  # 退勤状態を判定するメソッド
+  def off_duty?
+    started_at.nil? || (started_at.present? && finished_at.present?)
   end
 
   private
