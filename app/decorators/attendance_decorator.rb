@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module AttendanceDecorator
-  
   def current_status
     if off_duty?
       '退勤'
